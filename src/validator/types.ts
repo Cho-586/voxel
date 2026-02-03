@@ -3,6 +3,7 @@ import type {
   BaseSchema,
   BooleanSchema,
   EnumSchema,
+  InferOutput,
   NumberSchema,
   ObjectSchema,
   PhantomSchema,
@@ -18,6 +19,12 @@ export type VoxelSchema =
   | ObjectSchema<Record<string, unknown>>
   | PhantomSchema<unknown>;
 
+export type VoxelValidationResult<T> = {
+  success: boolean;
+  output: InferOutput<T>;
+  issues: VoxelIssue[];
+};
+
 export type VoxelIssue = {
   code: string;
   message: string;
@@ -25,5 +32,3 @@ export type VoxelIssue = {
   recieved?: unknown;
   expected?: string | number | RegExp;
 };
-
-export type VoxelIssueCodes = "invalid_type" | "too_small" | "too_large";

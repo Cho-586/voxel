@@ -1,5 +1,5 @@
 {
-  "name": "voxel",
+  "name": "@cube/voxel",
   "module": "src/index.ts",
   "scripts": {
     "dev": "bun run --watch src/index.ts",

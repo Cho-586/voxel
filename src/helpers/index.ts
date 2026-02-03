@@ -1,10 +1,14 @@
 import { object, string } from "../primitives";
-import type { ObjectSchema, StringSchemaOptions } from "../primitives/types";
+import type {
+  ObjectSchema,
+  StringSchema,
+  StringSchemaOptions,
+} from "../primitives/types";
 
 /* --- Schema extensions --- */
 export const date = (
   options: Omit<StringSchemaOptions<Date>, "pattern"> = {},
-) =>
+): StringSchema<Date> =>
   string({
     ...options,
     pattern: [/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/, "Invalid date"],
@@ -13,7 +17,7 @@ export const date = (
 
 export const email = (
   options: Omit<StringSchemaOptions<string>, "pattern"> = {},
-) =>
+): StringSchema<string> =>
   string({
     ...options,
     pattern: [/^[^\s@]+@[^\s@]+\.[^s@]+$/, "Invalid email"],
@@ -21,11 +25,12 @@ export const email = (
 
 export const url = (
   options: Omit<StringSchemaOptions<string>, "pattern"> = {},
-) => string({ ...options, pattern: [/^https?:\/\/.+/, "Invalid url"] });
+): StringSchema<string> =>
+  string({ ...options, pattern: [/^https?:\/\/.+/, "Invalid url"] });
 
 export const uuid = (
   options: Omit<StringSchemaOptions<string>, "pattern"> = {},
-) =>
+): StringSchema<string> =>
   string({
     ...options,
     pattern: [

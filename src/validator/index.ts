@@ -1,12 +1,10 @@
 import type { ConstraintObj, InferInput } from "../primitives/types";
-import type { VoxelIssue, VoxelSchema } from "./types";
-
-type VoxelValidationResult<T> = { output: T };
+import type { VoxelIssue, VoxelSchema, VoxelValidationResult } from "./types";
 
 export function validate<const C extends VoxelSchema>(
   schema: C,
   input: InferInput<C> | (unknown & {}),
-) {
+): VoxelValidationResult<C> {
   return _validate(schema as any, input, []);
 }
 
